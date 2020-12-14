@@ -19,7 +19,7 @@ class PlaneWindow(Toplevel):
         self = Tk()
         self.resizable(width=False, height=False)
         self.title("Добавить самолёт") 
-        self.geometry("400x250") 
+        self.geometry("400x440") 
         
         def logicfunc(capacitytxt, typetxt, first_classtxt):
             if (capacitytxt.get().isdigit()) and (first_classtxt.get().isdigit()) and (typetxt.get().strip()):

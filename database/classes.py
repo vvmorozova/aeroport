@@ -9,8 +9,6 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy import select
 from sqlalchemy.inspection import inspect
 from sqlalchemy import text
-import tkinter as tk
-from tkinter import *
 
 engine = create_engine("postgresql://client:uw0ntgue22@localhost:5432/", echo=True)
 Base = declarative_base()
@@ -35,12 +33,11 @@ class Plane(Base):
     def __repr__(self):
         return "<plane(type='%s', capacity='%d', first_class='%d')>" % (
                             self.aircraft_type, self.capacity, self.first_class)
-    def add_plane(session, at, cp, fc, window):
+    def add_plane(session, at, cp, fc):
 
         new_plane = Plane(aircraft_type = at, capacity = cp, first_class = fc)
         session.add(new_plane)
         session.commit()
-        window.destroy()
         return new_plane
 
     def filter_capacity(value, table, session):
@@ -56,6 +53,7 @@ class Plane(Base):
    
 
     def sort_capacity(session):
+    	
         return session.query('plane.capacity','plane.aircraft_type').order_by(text("plane.capacity")).all()
 
     def sort_aircraft_type(session):
