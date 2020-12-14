@@ -28,6 +28,7 @@ class PlaneWindow(Toplevel):
                 else:
                     addbtn = Button(self, text = "Добавить",font = ("Arial", 10), width = 10, state = NORMAL, command = Plane.add_plane(session, typetxt.get(), int(capacitytxt.get()), int(first_classtxt.get()))) 
                     addbtn.place(x = 160, y = 210)
+
             else:
                 addbtn = Button(self, text = "Добавить",font = ("Arial", 10), width = 10, state = DISABLED)
                 addbtn.place(x = 160, y = 210)
@@ -61,7 +62,7 @@ class PlaneWindow(Toplevel):
         self.mainloop()
 
     def refreshit(session):
-        refresh(session)
+        refresh(plane,session)
 
     def sort(newwindow):
         self = Tk()
@@ -101,48 +102,48 @@ class PlaneWindow(Toplevel):
             i=i+1
 
         addbtn = Button(self, 
-            text ="Добавить",font=("Arial", 10), width=10) 
+            text ="Добавить",font=("Arial", 20), width=17) 
 
         addbtn.bind("<Button>",lambda e: PlaneWindow.add_plane(master)) 
 
-        addbtn.place(x=5, y=365)
+        addbtn.place(x=345, y=15)
 
         delbtn = Button(self, 
-            text ="Удалить",font=("Arial", 10), width=10) 
+            text ="Удалить",font=("Arial", 20), width=17) 
 
         #addbtn.bind("<Button>", 
         #lambda e: PlaneWindow(master)) 
 
-        delbtn.place(x=110, y=365)
+        delbtn.place(x=345, y=80)
 
         sortbtn = Button(self, 
-            text ="Сортировать",font=("Arial", 10), width=10) 
+            text ="Сортировать",font=("Arial", 20), width=17) 
 
         sortbtn.bind("<Button>", lambda e: PlaneWindow.sort(master)) 
 
-        sortbtn.place(x=215, y=365)
+        sortbtn.place(x=345, y=145)
 
         filterbtn = Button(self, 
-            text ="Фильтры",font=("Arial", 10), width=10) 
+            text ="Фильтры",font=("Arial", 20), width=17) 
 
         #filterbtn.bind("<Button>", lambda e: PlaneWindow.filter(master)) 
 
-        filterbtn.place(x=320, y=365)
+        filterbtn.place(x=345, y=210)
 
         refreshbtn = Button(self, 
-            text ="Обновить",font=("Arial", 10), width=10) 
+            text ="Обновить",font=("Arial", 20), width=17) 
 
         refreshbtn.bind("<Button>",lambda e: PlaneWindow.refreshit(session)) 
 
-        refreshbtn.place(x=425, y=365)
+        refreshbtn.place(x=345, y=275)
 
         savebtn = Button(self, 
-            text ="Сохранить",font=("Arial", 10), width=10) 
+            text ="Сохранить",font=("Arial", 20), width=17) 
 
         #addbtn.bind("<Button>", 
         #lambda e: PlaneWindow(master)) 
 
-        savebtn.place(x=530, y=365)
+        savebtn.place(x=345, y=340)
 
         self.mainloop()
 
@@ -170,7 +171,7 @@ class AirportWindow(Toplevel):
 master = Tk() 
 master.title("База данных аэропорта") 
 master.geometry("400x400") 
-
+master.resizable(width=False, height=False)
 label = Label(master, text ="Выберите таблицу:",font=("Arial", 30)) 
 label.pack(side = TOP, pady = 20) 
 
@@ -197,6 +198,11 @@ airportbtn.bind("<Button>",
         lambda e: AirportWindow(master)) 
 
 airportbtn.place(x=40, y=200)
+
+quitbtn = Button(master, 
+            text ="Выход",font=("Arial", 12), width=10, command = master.destroy) 
+
+quitbtn.place(x=270, y=360)
 
 
 mainloop() 
